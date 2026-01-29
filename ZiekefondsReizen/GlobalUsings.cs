@@ -1,0 +1,13 @@
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Text.Json.Serialization;
+global using ZiekefondsReizen.Data.UnitOfWork;
+global using AutoMapper;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+global using System.Linq.Expressions;
+global using Microsoft.AspNetCore.Authorization;
+global using ZiekefondsReizen.Models;
+global using ZiekefondsReizen.ViewModels;
+global using ZiekefondsReizen.Data;
+global using ZiekefondsReizen.Data.Repository;
