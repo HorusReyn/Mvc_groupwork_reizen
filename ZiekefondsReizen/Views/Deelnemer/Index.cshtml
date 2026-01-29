@@ -1,0 +1,28 @@
+﻿@model DeelnemerViewModel
+@{
+    ViewBag.Title = "InschrijvenGroepsreis";
+}
+<h2>Deelnemen aan groepsreis</h2>
+<br />
+
+<div class="row">
+    <div class="cpm-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KindId" class="control-label">Gezinslid</label>
+                <select asp-for="KindId" class="form-control" asp-items="Model.Kinderen"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Opmerking" class="control-label"></label>
+                <input asp-for="Opmerking" class="form-control" />
+                <span asp-validation-for="Opmerking" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Inschrijven" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+</div>

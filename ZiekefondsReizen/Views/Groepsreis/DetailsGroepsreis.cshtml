@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<CustomUser> UserManager
+@model GroepsreisDetailsViewModel
+@{
+    ViewData["Title"] = "Groepsreis Details";
+}
+
+<h2>Groepsreis naar @Model.Bestemming.Naam van @Model.Begindatum</h2>
+<br />
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Prijs</td>
+        <td>€ @Model.Prijs</td>
+    </tr>
+</table>
+<br />
+<h5>Deelnemers ( @Model.Deelnemers.Count )</h5>
+@{
+    if (User.IsInRole("Monitor") || User.IsInRole("Beheerder"))
+    {
+        <table class="table">
+            <tr>
+                <td>Naam</td>
+                <td>Leeftijd</td>
+            </tr>
+            @{
+                foreach (Deelnemer deelnemer in Model.Deelnemers)
+                {
+                    int leeftijd = DateTime.Today.Year - deelnemer.Kind.Geboortedatum.Year;
+                    <tr>
+                        <td>@deelnemer.Kind.Voornaam @deelnemer.Kind.Naam</td>
+                        <td>
+                            @leeftijd
+                        </td>
+                        <td><a asp-action="DetailsKind" asp-route-id="@deelnemer.Kind.Id" asp-controller="Kind" class="btn btn-primary">Details</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+}
+@{
+    if (Model.Bestemming != null)
+    {
+        <br />
+        <h5>Bestemming</h5>
+        <table class="table">
+            <tr>
+                <td>Naam</td>
+                <td>@Model.Bestemming.Naam</td>
+            </tr>
+            <tr>
+                <td>Minimum Leeftijd</td>
+                <td>@Model.Bestemming.MinLeeftijd</td>
+            </tr>
+            <tr>
+                <td>Maximum Leeftijd</td>
+                <td>@Model.Bestemming.MaxLeeftijd</td>
+            </tr>
+            <tr>
+                <td>Beschrijving</td>
+                <td>@Model.Bestemming.Beschrijving</td>
+            </tr>
+
+        </table>
+
+        <br />
+        <h7>Reviews</h7> <br />
+        <a asp-action="AddReview" asp-route-id="@Model.Bestemming.Id" asp-controller="Review" class="btn btn-primary">Plaats Review</a>
+        <br />
+        <div class="d-flex flex-wrap">
+            @{
+                if (Model.Bestemming.Reviews != null)
+                {
+                    foreach (Review review in Model.Bestemming.Reviews)
+                    {
+                        <div class="card" style="margin: 10px; padding: 5px; width: 30%;">
+                            <p>Score: @review.Score / 5</p>
+                            <p>@review.Text</p>
+                            <a asp-action="DetailsReview" asp-route-id="@review.Id" asp-controller="Review" class="btn btn-primary" style="width:25%;">
+                                Details
+                            </a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    }
+}
+<br /><br />
+
+<a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>

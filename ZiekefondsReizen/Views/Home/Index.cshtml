@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<h1>Dashboard</h1>
+<br />
+<h3>Beschikbare Groepsreizen:</h3>
+<div class="d-flex flex-wrap">
+    @{
+        if(Model.Groepsreizen != null)
+        {
+            foreach(HomeGroepsreisViewModel groepsreis in Model.Groepsreizen)
+            {
+                if(groepsreis.Bestemming != null)
+                {
+                    <div class="card" style="margin: 10px; padding: 15px; width: 30%;">
+                        <h5>@groepsreis.Bestemming</h5>
+                        <h6>€ @groepsreis.Prijs</h6>
+                        @groepsreis.Datum
+                        <br />
+                        @groepsreis.Leeftijd
+                        <p></p>
+                        <a asp-action="DetailsGroepsreis" asp-route-id="@groepsreis.Id" asp-controller="Groepsreis" class="btn btn-primary" style="width:25%;">
+                            Details
+                        </a>
+                        <a asp-action="Index" asp-route-id="@groepsreis.Id" asp-controller="Deelnemer" class="btn btn-primary" style="width:33%; margin-top: 5px;">
+                            Inschrijven
+                        </a>
+                    </div>
+                }
+            }
+        }
+    }
+</div>
+

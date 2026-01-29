@@ -1,0 +1,56 @@
+﻿@model AccountListViewModel
+@{
+    ViewData["Title"] = "Overzicht Accounts";
+}
+<h2>Accounten</h2>
+@{
+    if (true)
+    {
+        <a asp-action="AddAccount" class="btn btn-primary">Nieuw Account</a>
+    }
+}
+<br />
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Accounts[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Accounts[0].Voornaam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Accounts[0].Achternaam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Accounts[0].Email)
+        </td>
+    </tr>
+    @foreach (var item in Model.Accounts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Achternaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Email)
+            </td>
+
+            <td>
+                <a asp-action="DetailsAccount" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+            @{
+                if (true)
+                {
+                    <td><a asp-action="EditAccount" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+                    <td><a asp-action="DeleteAccount" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+                }
+            }
+        </tr>
+    }
+</table>

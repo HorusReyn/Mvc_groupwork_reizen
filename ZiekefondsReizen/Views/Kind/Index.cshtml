@@ -1,0 +1,58 @@
+﻿@model KindListViewModel
+@{
+    ViewData["Title"] = "Overzicht Gezinsleden";
+}
+<h2>GezinsLeden</h2>
+<a asp-action="AddKind" class="btn btn-primary">Nieuw Gezinslid</a>
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Naam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Voornaam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Geboortedatum)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Allergieen)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Kinderen[0].Medicatie)
+        </td>
+    </tr>
+    @foreach (var item in Model.Kinderen)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Geboortedatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Allergieen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Medicatie)
+            </td>
+
+            <td><a asp-action="DetailsKind" asp-route-id="@item.Id" class="btn btn-primary">Details</a></td>
+            <td><a asp-action="EditKind" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+            <td><a asp-action="DeleteKind" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+
+        </tr>
+    }
+</table>

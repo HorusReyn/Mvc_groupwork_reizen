@@ -1,0 +1,30 @@
+﻿@model ReviewDetailsViewModel
+@{
+    ViewData["Title"] = "Review Details";
+}
+
+<h2>Review over @Model.Bestemming.Naam</h2>
+<br />
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Score</td>
+        <td>@Model.Score / 5</td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td>@Model.Text</td>
+    </tr>
+</table>
+<br />
+@{
+    if (User.IsInRole("Verantwoordelijke"))
+    {
+        <a asp-action="DeleteReview" asp-route-id="@Model.Id" class="btn btn-primary">Verwijder</a>
+        <br /><br />
+    }
+}
+<a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>

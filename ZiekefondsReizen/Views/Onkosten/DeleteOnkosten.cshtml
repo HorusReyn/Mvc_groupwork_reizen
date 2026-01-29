@@ -1,0 +1,37 @@
+@model OnkostenDeleteViewModel
+
+@{
+    ViewData["Title"] = "Onkost Verwijderen";
+}
+
+<h2>Onkost Verwijderen</h2>
+
+<h4>Weet je zeker dat je deze onkost wilt verwijderen?</h4>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Titel</dt>
+        <dd class="col-sm-10">@Model.Titel</dd>
+
+        <dt class="col-sm-2">Omschrijving</dt>
+        <dd class="col-sm-10">@Model.Omschrijving</dd>
+
+        <dt class="col-sm-2">Bedrag</dt>
+        <dd class="col-sm-10">@Model.Bedrag.ToString("C")</dd>
+
+        <dt class="col-sm-2">Datum</dt>
+        <dd class="col-sm-10">@Model.Datum.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">GroepsreisId</dt>
+        <dd class="col-sm-10">@Model.GroepsreisId</dd>
+        
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Verwijderen</button>
+        <a asp-action="Index" class="btn btn-secondary">Annuleren</a>
+    </form>
+</div>

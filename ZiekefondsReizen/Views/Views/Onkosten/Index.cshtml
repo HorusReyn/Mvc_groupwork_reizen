@@ -1,0 +1,53 @@
+﻿@model OnkostenListViewModel
+@{
+    ViewData["Title"] = "Overzicht Onkosten";
+}
+
+<h2>Onkosten</h2>
+
+<a asp-action="AddOnkosten" class="btn btn-primary">Nieuwe Onkost</a>
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Onkosten[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Onkosten[0].Omschrijving)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Onkosten[0].Bedrag)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Onkosten[0].Datum)
+        </td>
+    </tr>
+    @foreach (var item in Model.Onkosten)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Omschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Bedrag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Datum)
+            </td>
+
+            <td>
+                <a asp-action="DetailsOnkosten" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+            <td>
+                <a asp-action="EditOnkosten" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a>
+            </td>
+            <td>
+                <a asp-action="DeleteOnkosten" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a>
+            </td>
+        </tr>
+    }
+</table>

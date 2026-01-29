@@ -1,0 +1,56 @@
+﻿@model AccountDetailsViewModel
+@{
+    ViewData["Title"] = "Account Details";
+}
+
+<h2>@Model.Voornaam Model.Achternaam</h2>
+<br />
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Geboortedatum</td>
+        <td>@Model.Geboortedatum</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>Gemeente</td>
+        <td>@Model.Gemeente</td>
+    </tr>
+    <tr>
+        <td>Straat</td>
+        <td>@Model.Straat</td>
+    </tr>
+    <tr>
+        <td>Huisnummer</td>
+        <td>@Model.Huisnummer</td>
+    </tr>
+    <tr>
+        <td>Postcode</td>
+        <td>@Model.Postcode</td>
+    </tr>
+    <tr>
+        <td>Huisdokter</td>
+        <td>@Model.Huisdoktor</td>
+    </tr>
+    <tr>
+        <td>Contractnummer</td>
+        <td>@Model.ContractNummer</td>
+    </tr>
+    <tr>
+        <td>Rekeningnummer</td>
+        <td>@Model.RekeningNummer</td>
+    </tr>
+    <tr>
+        <td>Telefoonnummer</td>
+        <td>@Model.TelefoonNummer</td>
+    </tr>
+</table>
+<br />
+
+<a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>

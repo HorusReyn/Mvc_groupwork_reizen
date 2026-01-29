@@ -1,0 +1,21 @@
+﻿@model OpleidingDeleteViewModel
+@{
+    ViewData["Title"] = "Verwijderen";
+}
+
+<h1>Opleiding Verwijderen</h1>
+<br />
+<h4>Ben je zeker dat je de opleiding @Model.Naam wilt verwijderen?</h4>
+<br />
+<div style="padding: 15px;" class="d-inline-flex card">
+    <h4>WAARSCHUWING!</h4>
+    <h5>Als u dit doet worden alle opleidingen die deze als vereiste hebben op "Geen vereiste" gezet!</h5>
+</div>
+<br />
+<br />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Verwijder" class="btn btn-primary" />
+    <p></p>
+    <a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>
+</form>

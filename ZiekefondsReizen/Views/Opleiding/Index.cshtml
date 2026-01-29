@@ -1,0 +1,58 @@
+﻿@model OpleidingListViewModel
+@{
+    ViewData["Title"] = "Overzicht Opleidingen";
+}
+<h2>Opleidingen</h2>
+@if (User.IsInRole("Verantwoordelijke"))
+{
+    <a asp-action="AddOpleiding" class="btn btn-primary">Nieuwe Opleiding</a>
+}
+
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Opleidingen[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Opleidingen[0].Naam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Opleidingen[0].Begindatum)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Opleidingen[0].AantalPlaatsen)
+        </td>
+    </tr>
+    @foreach (var item in Model.Opleidingen)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Begindatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.AantalPlaatsen)
+            </td>
+
+            <td>
+                <a asp-action="DetailsOpleiding" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+            @{
+                if (User.IsInRole("Verantwoordelijke"))
+                {
+                    <td><a asp-action="EditOpleiding" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+                    <td><a asp-action="DeleteOpleiding" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+                }
+            }
+           
+
+        </tr>
+    }
+</table>

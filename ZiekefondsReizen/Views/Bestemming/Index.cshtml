@@ -1,0 +1,47 @@
+﻿@model BestemmingListViewModel
+@{
+    ViewData["Title"] = "Overzicht Bestemmingen";
+}
+<h2>Bestemmingen</h2>
+@if (User.IsInRole("Verantwoordelijke"))
+{
+    <a asp-action="AddBestemming" class="btn btn-primary">Nieuwe Bestemming</a>
+}
+
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Bestemmingen[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Bestemmingen[0].Naam)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Bestemmingen[0].Leeftijd)
+        </td>
+    </tr>
+    @foreach (var item in Model.Bestemmingen)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Leeftijd)
+            </td>
+
+            <td>
+                <a asp-action="DetailsBestemming" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+
+            <td><a asp-action="EditBestemming" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+            <td><a asp-action="DeleteBestemming" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+
+        </tr>
+    }
+</table>

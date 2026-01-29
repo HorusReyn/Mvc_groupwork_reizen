@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<CustomUser> UserManager
+@model GroepsreisListViewModel
+@{
+    ViewData["Title"] = "Overzicht Groepsreizen";
+}
+<h2>Groepsreizen</h2>
+@{
+    if (User.IsInRole("Beheerder"))
+    {
+        <a asp-action="AddGroepsreis" class="btn btn-primary">Nieuwe Groepsreis</a>
+    }
+}
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Groepsreisen[0].Id)
+        </td>
+        <td>
+            Bestemming
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Groepsreisen[0].Begindatum)
+        </td>
+    </tr>
+    @foreach (var item in Model.Groepsreisen)
+    {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Id)
+                </td>
+                @{
+                    if(item.Bestemming != null)
+                    {
+                        <td>@Html.DisplayFor(modelitem => item.Bestemming)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelitem => item.Begindatum)
+                </td>
+
+                <td>
+                    <a asp-action="DetailsGroepsreis" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                </td>
+            @{
+                if (User.IsInRole("Verantwoordelijke"))
+                {
+                    <td><a asp-action="EditGroepsreis" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+                    <td><a asp-action="DeleteGroepsreis" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+                }
+            }
+            
+        </tr>
+    }
+</table>

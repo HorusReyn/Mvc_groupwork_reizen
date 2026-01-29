@@ -1,0 +1,41 @@
+﻿@model OpleidingDetailsViewModel
+@{
+    ViewData["Title"] = "Opleiding Details";
+}
+
+<h2>Opleiding @Model.Naam</h2>
+<br />
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Begindatum</td>
+        <td>@Model.Begindatum</td>
+    </tr>
+    <tr>
+        <td>Einddatum</td>
+        <td>@Model.Einddatum</td>
+    </tr>
+    <tr>
+        <td>Aantal Plaatsen</td>
+        <td>@Model.AantalPlaatsen</td>
+    </tr>
+    <tr>
+        <td>Beschrijving</td>
+        <td>@Model.Beschrijving</td>
+    </tr>
+    @{
+        if (Model.OpleidingVereist != null)
+        {
+            <tr>
+                <td>Vereiste Opleiding</td>
+                <td>@Model.OpleidingVereist.Naam</td>
+            </tr>
+        }
+    }
+</table>
+<br />
+
+<a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>

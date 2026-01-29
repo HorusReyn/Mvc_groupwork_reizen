@@ -1,0 +1,45 @@
+﻿@model ActiviteitListViewModel
+@{
+    ViewData["Title"] = "Overzicht Activiteiten";
+}
+<h2>Activiteiten</h2>
+@{
+    if (true)
+    {
+        <a asp-action="AddActiviteit" class="btn btn-primary">Nieuwe Activiteit</a>
+    }
+}
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Activiteiten[0].Id)
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Activiteiten[0].Naam)
+        </td>
+    </tr>
+    @foreach (var item in Model.Activiteiten)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Naam)
+            </td>
+
+            <td>
+                <a asp-action="DetailsActiviteit" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+            @{
+                if (true)
+                {
+                    <td><a asp-action="EditActiviteit" asp-route-id="@item.Id" class="btn btn-primary">Bewerk</a></td>
+                    <td><a asp-action="DeleteActiviteit" asp-route-id="@item.Id" class="btn btn-primary">Verwijder</a></td>
+                }
+            }
+        </tr>
+    }
+</table>

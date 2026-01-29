@@ -1,0 +1,53 @@
+﻿@model BestemmingDetailsViewModel
+@{
+    ViewData["Title"] = "Bestemming Details";
+}
+
+<h2>@Model.Naam</h2>
+<br />
+<table class="table">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Code</td>
+        <td>@Model.Code</td>
+    </tr>
+    <tr>
+        <td>Minimum Leeftijd</td>
+        <td>@Model.MinLeeftijd jaar oud</td>
+    </tr>
+    <tr>
+        <td>Maximum Leeftijd</td>
+        <td>@Model.MaxLeeftijd jaar oud</td>
+    </tr>
+    <tr>
+        <td>Beschrijving</td>
+        <td>@Model.Beschrijving</td>
+    </tr>
+</table>
+<br />
+<h5>Reviews</h5>
+<br />
+<div class="d-flex flex-wrap">
+    @{
+        if (Model.Reviews != null)
+        {
+            foreach (Review review in Model.Reviews)
+            {
+                <div class="card" style="margin: 10px; padding: 5px; width: 30%;">
+                    <p>Score: @review.Score / 5</p>
+                    <p>@review.Text</p>
+                    <a asp-action="DetailsReview" asp-route-id="@review.Id" asp-controller="Review" class="btn btn-primary" style="width:25%;">
+                        Details
+                    </a>
+                </div>
+            }
+        }
+    }
+</div>
+
+<br />
+
+<a asp-action="Index" class="btn btn-primary">Terug naar de lijst</a>

@@ -1,0 +1,45 @@
+@model OnkostenCreateViewModel
+@{
+    ViewData["Title"] = "Nieuwe Onkost Toevoegen";
+}
+
+<h2>Nieuwe Onkost Toevoegen</h2>
+
+<form asp-action="AddOnkosten" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Titel" class="control-label"></label>
+        <input asp-for="Titel" class="form-control" />
+        <span asp-validation-for="Titel" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Omschrijving" class="control-label"></label>
+        <input asp-for="Omschrijving" class="form-control" />
+        <span asp-validation-for="Omschrijving" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GroepsreisID" class="control-label"></label>
+        <input asp-for="GroepsreisID" class="form-control" type="number" step="1" />
+        <span asp-validation-for="GroepsreisID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Bedrag" class="control-label"></label>
+        <input asp-for="Bedrag" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Bedrag" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Datum" class="control-label"></label>
+        <input asp-for="Datum" class="form-control" type="date" />
+        <span asp-validation-for="Datum" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Toevoegen</button>
+</form>
+
+<div>
+    <br />
+    <a asp-action="Index" class="btn btn-secondary">Terug naar de lijst</a>
+</div>

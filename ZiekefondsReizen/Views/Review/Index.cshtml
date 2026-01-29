@@ -1,0 +1,38 @@
+﻿@model ReviewListViewModel
+@{
+    ViewData["Title"] = "Overzicht Reviews";
+}
+<h2>Reviews</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(v => v.Reviews[0].Id)
+        </td>
+        <td>
+            Bestemming
+        </td>
+        <td>
+            @Html.DisplayNameFor(v => v.Reviews[0].Score)
+        </td>
+    </tr>
+    @foreach (var item in Model.Reviews)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Bestemming.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Score)
+            </td>
+
+            <td>
+                <a asp-action="DetailsReview" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+            </td>
+        </tr>
+    }
+</table>
